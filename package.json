@@ -1,0 +1,32 @@
+{
+  "name": "vrm-stream-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lightweight VRM avatar window prototype for OBS",
+  "main": "src/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "check": "node --check src/main.cjs && node --check src/preload.cjs && node --check src/avatar.js && node --check src/settings.js",
+    "build:linux": "electron-builder --linux AppImage tar.gz",
+    "build:windows": "electron-builder --win nsis zip"
+  },
+  "dependencies": {
+    "@pixiv/three-vrm": "^3.4.2",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "electron": "^38.2.0",
+    "electron-builder": "^26.0.12"
+  },
+  "type": "module",
+  "build": {
+    "appId": "jp.miyamizu.vrmstream",
+    "productName": "VRM Stream App",
+    "directories": { "output": "dist" },
+    "files": ["src/**/*", "package.json", "node_modules/**/*"],
+    "linux": { "target": ["AppImage", "tar.gz"], "category": "Graphics" },
+    "win": { "target": ["nsis", "zip"] },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true }
+  }
+}
