@@ -8,8 +8,8 @@
     "start": "electron .",
     "dev": "electron .",
     "check": "node --check src/main.cjs && node --check src/preload.cjs && node --check src/avatar.js && node --check src/settings.js",
-    "build:linux": "electron-builder --linux AppImage tar.gz",
-    "build:windows": "electron-builder --win nsis zip"
+    "build:linux": "electron-builder --publish never --linux AppImage tar.gz",
+    "build:windows": "electron-builder --publish never --win nsis zip"
   },
   "dependencies": {
     "@pixiv/three-vrm": "^3.4.2",
