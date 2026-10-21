@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VRM Stream App</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#e8e8ec;background:#1d1e22}
+*{box-sizing:border-box}body{margin:0;padding:20px}h1{font-size:20px;margin:0 0 5px}
+p{color:#aeb0b9;font-size:12px;line-height:1.5}
+.section{border:1px solid #3c3e46;border-radius:9px;padding:14px;margin-top:15px}
+h2{font-size:14px;margin:0 0 12px}
+label{display:block;font-size:13px;margin:11px 0 5px}
+button,select,input[type=color]{background:#2b2d34;color:#f2f2f4;border:1px solid #555862;border-radius:6px;padding:9px;font:inherit}
+button{cursor:pointer}button.primary{background:#365f9d;border-color:#4779c4;width:100%}
+.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}select{width:100%}
+.check{display:flex;gap:8px;align-items:center}.check label{margin:0}
+.status{font-size:12px;color:#b7d9b0;min-height:18px;margin-top:8px}
+</style>
+</head>
+<body>
+<h1>VRM Stream App</h1>
+<p>OBS配信向けVRM表示プロトタイプ — 初期技術検証段階</p>
+<div class="section">
+  <h2>アバター</h2>
+  <button class="primary" id="load">VRMモデルを読み込む</button>
+  <div class="status" id="modelStatus">モデル未選択</div>
+</div>
+<div class="section">
+  <h2>背景・描画</h2>
+  <label for="background">背景モード</label>
+  <select id="background"><option value="transparent">透過</option><option value="chroma">クロマキー</option></select>
+  <div class="row">
+    <div><label for="chroma">クロマキー色</label><input id="chroma" type="color" value="#00ff00"></div>
+    <div><label for="fps">描画FPS上限</label><select id="fps"><option>15</option><option>24</option><option selected>30</option><option>60</option></select></div>
+  </div>
+  <div class="check" style="margin-top:14px"><input type="checkbox" id="frame"><label for="frame">ウィンドウ枠を表示</label></div>
+  <button id="apply" class="primary" style="margin-top:14px">設定を適用</button>
+  <div class="status" id="status"></div>
+</div>
+<div class="section">
+  <h2>操作</h2>
+  <p>左ドラッグ：ウィンドウ移動<br>右ドラッグ：カメラ回転<br>Ctrl + 右ドラッグ：カメラパン</p>
+</div>
+<div class="section">
+  <h2>未実装・未検証</h2>
+  <p>Webカメラトラッキング、設定の永続化、シェーダープリセット、Wayland透過とOBSキャプチャの実機検証は未完了です。透過動作はElectron・コンポジター・OBSの組み合わせに依存します。</p>
+</div>
+<script src="./settings.js"></script>
+</body>
+</html>
